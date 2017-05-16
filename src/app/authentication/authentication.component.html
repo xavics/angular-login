@@ -1,0 +1,12 @@
+<div class="aligner">
+  <form class="aligner-center-item" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
+    <h1>Login Form</h1>
+    <md-input-container style="width: 100%">
+      <input mdInput type="text" formControlName="username" placeholder="Username"/>
+    </md-input-container>
+    <md-input-container style="width: 100%">
+      <input mdInput type="password" formControlName="password" placeholder="Password" />
+    </md-input-container>
+    <button md-raised-button type="submit" [disabled]="!loginForm.valid"> Sign In</button>
+  </form>
+</div>
