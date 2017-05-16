@@ -4,6 +4,7 @@
 import {Component} from "@angular/core";
 import {Validators, FormGroup, FormBuilder} from "@angular/forms";
 import {LoginObject} from "./shared/login-object.model";
+import {AuthenticationService} from "./shared/authentication.service";
 @Component({
   selector: 'authentication',
   templateUrl: 'authentication.component.html'
@@ -12,7 +13,7 @@ import {LoginObject} from "./shared/login-object.model";
 export class AuthenticationComponent {
   public loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -23,6 +24,9 @@ export class AuthenticationComponent {
   }
 
   public submitLogin(): void {
-    console.info("Form: ", new LoginObject(this.loginForm.value))
+    this.authenticationService.login(new LoginObject(this.loginForm.value)).subscribe(
+      token => console.info("Token: ", token),
+      error => console.info("Error: ", error)
+    )
   }
 }

@@ -1,9 +1,16 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
+import {fakeBackendProvider} from "./helper/fake-backend";
+import {MockBackend} from "@angular/http/testing";
+import {BaseRequestOptions} from "@angular/http";
 
 @NgModule({
   declarations: [  ],
   imports: [],
-  providers: [],
+  providers: [
+    fakeBackendProvider,
+    MockBackend,
+    BaseRequestOptions
+  ],
   bootstrap: []
 })
 export class CoreModule {

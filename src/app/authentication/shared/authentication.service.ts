@@ -10,7 +10,7 @@ export class AuthenticationService {
 
   constructor(private http: Http) {}
 
-  private basePath = 'api/authenticate/';
+  private basePath = '/api/authenticate/';
 
   login(loginObj: LoginObject): Observable<{token: string}> {
     return this.http.post(this.basePath + 'login', loginObj).map(this.extractData);
@@ -22,6 +22,6 @@ export class AuthenticationService {
 
   private extractData(res: Response) {
     let body = res.json();
-    return body.data || { };
+    return body;
   }
 }
