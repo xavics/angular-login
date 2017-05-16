@@ -10,6 +10,7 @@ import {AuthenticationComponent} from "./authentication/authentication.component
 import {Routing} from "./app.routing";
 import {MdInputModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
+import {MdCardModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MdButtonModule} from '@angular/material';
     CoreModule,
     ReactiveFormsModule,
     MdInputModule,
-    MdButtonModule
+    MdButtonModule,
+    MdCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

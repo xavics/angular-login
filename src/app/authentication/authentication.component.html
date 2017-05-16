@@ -1,12 +1,20 @@
 <div class="aligner">
-  <form class="aligner-center-item" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
-    <h1>Login Form</h1>
-    <md-input-container style="width: 100%">
-      <input mdInput type="text" formControlName="username" placeholder="Username"/>
-    </md-input-container>
-    <md-input-container style="width: 100%">
-      <input mdInput type="password" formControlName="password" placeholder="Password" />
-    </md-input-container>
-    <button md-raised-button type="submit" [disabled]="!loginForm.valid"> Sign In</button>
-  </form>
+  <md-card class="aligner-center-item">
+    <md-card-title>
+      Login Form
+    </md-card-title>
+    <md-card-content>
+      <form id="login-form" #lForm="ngForm" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
+        <md-input-container style="width: 100%; margin-bottom: 10px;">
+          <input mdInput type="text" formControlName="username" placeholder="Username"/>
+        </md-input-container>
+        <md-input-container style="width: 100%;">
+          <input mdInput type="password" formControlName="password" placeholder="Password" />
+        </md-input-container>
+      </form>
+    </md-card-content>
+    <md-card-actions style="text-align: right;">
+      <button md-raised-button type="submit" form="login-form" [disabled]="!loginForm.valid"> Sign In</button>
+    </md-card-actions>
+  </md-card>
 </div>
