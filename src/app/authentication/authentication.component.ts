@@ -3,6 +3,7 @@
  */
 import {Component} from "@angular/core";
 import {Validators, FormGroup, FormBuilder} from "@angular/forms";
+import {LoginObject} from "./shared/login-object.model";
 @Component({
   selector: 'authentication',
   templateUrl: 'authentication.component.html'
@@ -22,6 +23,6 @@ export class AuthenticationComponent {
   }
 
   public submitLogin(): void {
-    console.info("Form: ", this.loginForm.value)
+    console.info("Form: ", new LoginObject(this.loginForm.value))
   }
 }
