@@ -6,6 +6,8 @@ import {Validators, FormGroup, FormBuilder} from "@angular/forms";
 import {LoginObject} from "./shared/login-object.model";
 import {AuthenticationService} from "./shared/authentication.service";
 import {StorageService} from "../core/services/storage.service";
+import {Router} from "@angular/router";
+import {Session} from "../core/models/session.model";
 @Component({
   selector: 'authentication',
   templateUrl: 'authentication.component.html'
@@ -18,7 +20,8 @@ export class AuthenticationComponent {
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
-              private storageService: StorageService) { }
+              private storageService: StorageService,
+              private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -32,9 +35,14 @@ export class AuthenticationComponent {
     this.error = null;
     if(this.loginForm.valid){
       this.authenticationService.login(new LoginObject(this.loginForm.value)).subscribe(
-        data => this.storageService.setCurrentSession(data),
+        data => this.correctLogin(data),
         error => this.error = JSON.parse(error._body)
       )
     }
+  }
+
+  private correctLogin(data: Session){
+    this.storageService.setCurrentSession(data);
+    this.router.navigate(['/home']);
   }
 }

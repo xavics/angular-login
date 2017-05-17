@@ -11,11 +11,13 @@ import {Routing} from "./app.routing";
 import {MdInputModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
 import {MdCardModule} from '@angular/material';
+import {HomeComponent} from "./home/home.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
