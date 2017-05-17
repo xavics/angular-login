@@ -13,6 +13,8 @@ import {StorageService} from "../core/services/storage.service";
 
 export class AuthenticationComponent {
   public loginForm: FormGroup;
+  public submitted: Boolean = false;
+  public error: {code: number, message: string} = null;
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -26,9 +28,13 @@ export class AuthenticationComponent {
   }
 
   public submitLogin(): void {
-    this.authenticationService.login(new LoginObject(this.loginForm.value)).subscribe(
-      data => this.storageService.setCurrentToken(data.token),
-      error => console.info("Error: ", error)
-    )
+    this.submitted = true;
+    this.error = null;
+    if(this.loginForm.valid){
+      this.authenticationService.login(new LoginObject(this.loginForm.value)).subscribe(
+        data => this.storageService.setCurrentSession(data),
+        error => this.error = JSON.parse(error._body)
+      )
+    }
   }
 }

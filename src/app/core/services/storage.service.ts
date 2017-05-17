@@ -3,49 +3,55 @@
  */
 import {Injectable} from "@angular/core";
 import { Router } from '@angular/router';
-import * as jwt from 'jwt-simple';
+import {Session} from "../models/session.model";
+import {User} from "../models/user.model";
 
 @Injectable()
 export class StorageService {
 
   private localStorageService;
-  private currentToken : string = null;
-  // private jwtHelper: JwtHelper = new JwtHelper();
+  private currentSession : Session = null;
 
   constructor(private router: Router) {
     this.localStorageService = localStorage;
-    this.currentToken = this.loadToken();
+    this.currentSession = this.loadSessionData();
   }
 
-  setCurrentToken(token: string): void {
-    this.currentToken = token;
-    this.localStorageService.setItem('token', token);
+  setCurrentSession(session: Session): void {
+    this.currentSession = session;
+    this.localStorageService.setItem('currentUser', JSON.stringify(session));
   }
 
-  loadToken(): string{
-    return this.localStorageService.getItem('token');
+  loadSessionData(): Session{
+    var sessionStr = this.localStorageService.getItem('currentUser');
+    return (sessionStr) ? <Session> JSON.parse(sessionStr) : null;
   }
 
-  getCurrentToken(): string {
-    return this.currentToken;
+  getCurrentSession(): Session {
+    return this.currentSession;
   }
 
-  removeCurrentToken(): void {
-    this.localStorageService.removeItem('token');
-    this.currentToken = null;
+  removeCurrentSession(): void {
+    this.localStorageService.removeItem('currentUser');
+    this.currentSession = null;
   }
 
-  // getCurrentUser(): User {
-    // var session: Session = this.getCurrentSession();
-    // return (session && session.user) ? session.user : null;
-  // };
+  getCurrentUser(): User {
+    var session: Session = this.getCurrentSession();
+    return (session && session.user) ? session.user : null;
+  };
 
   isAuthenticated(): boolean {
     return (this.getCurrentToken() != null) ? true : false;
   };
 
-  removeStorage(): void{
-    this.removeCurrentToken();
+  getCurrentToken(): string {
+    var session = this.getCurrentSession();
+    return (session && session.token) ? session.token : null;
+  };
+
+  logout(): void{
+    this.removeCurrentSession();
     this.router.navigate(['/login']);
   }
 
