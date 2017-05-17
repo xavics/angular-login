@@ -17,7 +17,7 @@ export class AuthenticationService {
     return this.http.post(this.basePath + 'login', loginObj).map(this.extractData);
   }
 
-  logOut(): Observable<Boolean> {
+  logout(): Observable<Boolean> {
     return this.http.post(this.basePath + 'logout', {}).map(this.extractData);
   }
 

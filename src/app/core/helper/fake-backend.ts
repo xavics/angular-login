@@ -33,6 +33,13 @@ export function fakeBackendFactory (backend: MockBackend, options: BaseRequestOp
         }
 
       }
+
+      if (connection.request.url.endsWith('/api/authenticate/logout') && connection.request.method === RequestMethod.Post) {
+        let params = JSON.parse(connection.request.getBody());
+        connection.mockRespond(new Response(
+          new ResponseOptions({status: 200, body: true})
+        ));
+      }
     }, 500);
 
   });
