@@ -6,17 +6,17 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CoreModule} from "./core/core.module";
-import {AuthenticationComponent} from "./authentication/authentication.component";
 import {Routing} from "./app.routing";
 import {MdInputModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
 import {MdCardModule} from '@angular/material';
 import {HomeComponent} from "./home/home.component";
+import {LoginComponent} from "./login/login.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent,
+    LoginComponent,
     HomeComponent
   ],
   imports: [

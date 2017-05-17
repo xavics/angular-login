@@ -1,12 +1,13 @@
 import { RouterModule, Routes } from '@angular/router';
-import {AuthenticationComponent} from "./authentication/authentication.component";
 import {HomeComponent} from "./home/home.component";
+import {LoginComponent} from "./login/login.component";
+import {AuthorizatedGuard} from "./core/guards/authorizated.guard";
 
 const appRoutes: Routes = [
-  { path: 'login', component: AuthenticationComponent },
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login'}
+  { path: 'home', component: HomeComponent, canActivate: [ AuthorizatedGuard ] },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home'}
 ];
 
 export const Routing = RouterModule.forRoot(appRoutes);

@@ -9,11 +9,11 @@ import {StorageService} from "../core/services/storage.service";
 import {Router} from "@angular/router";
 import {Session} from "../core/models/session.model";
 @Component({
-  selector: 'authentication',
-  templateUrl: 'authentication.component.html'
+  selector: 'login',
+  templateUrl: 'login.component.html'
 })
 
-export class AuthenticationComponent {
+export class LoginComponent {
   public loginForm: FormGroup;
   public submitted: Boolean = false;
   public error: {code: number, message: string} = null;
