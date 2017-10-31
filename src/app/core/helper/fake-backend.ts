@@ -40,7 +40,7 @@ export function fakeBackendFactory (backend: MockBackend, options: BaseRequestOp
           new ResponseOptions({status: 200, body: true})
         ));
       }
-    }, 500);
+    }, 100);
 
   });
 
