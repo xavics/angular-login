@@ -10,8 +10,10 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        npm install
-        npm run build -prod
+        sh """
+          npm install
+          npm run build -prod
+        """
         app = docker.build("xavics/angular-login")
     }
 
