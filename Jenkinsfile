@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        app = docker.build("52.19.183.165:5000/xavics/angular-login")
+        app = docker.build("xavics/angular-login")
     }
 
     stage('Push image') {
