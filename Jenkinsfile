@@ -18,7 +18,7 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('http://52.19.183.165:3000', 'docker-registry-credentials') {
+        docker.withRegistry('http://52.19.183.165:5000', 'docker-registry-credentials') {
             app.push("latest")
         }
     }
