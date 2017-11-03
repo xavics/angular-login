@@ -19,7 +19,8 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('http://52.19.183.165:5000', 'docker-registry-credentials') {
-            app.push()
+            sh 'docker tag xavics/angular-login 52.19.183.165:5000/xavics/angular-login:latest'
+            sh 'docker push 52.19.183.165:5000/xavics/angular-login:latest'
         }
     }
 
