@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        app = docker.build("xavics/angular-login:latest")
+        app = docker.build("xavics/angular-login")
     }
 
     stage('Push image') {
@@ -19,7 +19,7 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('http://52.19.183.165:5000', 'docker-registry-credentials') {
-            app.push("latest")
+            app.push("52.19.183.165:5000/xavics/angular-login:latest")
         }
     }
 
