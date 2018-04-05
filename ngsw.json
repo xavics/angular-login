@@ -1,0 +1,45 @@
+{
+  "configVersion": 1,
+  "index": "/angular-login/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/angular-login/favicon.ico",
+        "/angular-login/index.html",
+        "/angular-login/inline.318b50c57b4eba3d437b.bundle.js",
+        "/angular-login/main.d069c494019418fc9d75.bundle.js",
+        "/angular-login/polyfills.77d59861e39435768676.bundle.js",
+        "/angular-login/styles.05b8cd01918daf7fd5c0.bundle.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/angular-login/assets/angular-128.png",
+        "/angular-login/assets/angular-152.png",
+        "/angular-login/assets/angular-256.png",
+        "/angular-login/assets/angular-512.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/angular-login/inline.318b50c57b4eba3d437b.bundle.js": "998c6060446975e566fd17509558ddc68d72eec3",
+    "/angular-login/assets/angular-128.png": "423e4b2ea4d1f653dbe54845edbb9b49a0ad39b6",
+    "/angular-login/main.d069c494019418fc9d75.bundle.js": "b862b1dd59b1c9dd671c8145fce5a831b8ed6c1a",
+    "/angular-login/assets/angular-152.png": "4319a5400b53867f92a846e77aed7a89397d7239",
+    "/angular-login/polyfills.77d59861e39435768676.bundle.js": "beb3f7129447fb464639e25447ceb200fa2ba87e",
+    "/angular-login/assets/angular-256.png": "653baf8883e54a90c61e4bbcecb82b8545705a99",
+    "/angular-login/styles.05b8cd01918daf7fd5c0.bundle.css": "1f6c6a3a7179ba3fb94a1f6b7e7aa5a2279fca0c",
+    "/angular-login/assets/angular-512.png": "9620c8af010dbe959194059d9c25f2533bf14971",
+    "/angular-login/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
+    "/angular-login/index.html": "ae7e68be548bdc808f1983fd2b43c2520039e31c"
+  }
+}
