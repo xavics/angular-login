@@ -15,6 +15,8 @@ import {
   MatButtonModule,
   MatCardModule
 } from '@angular/material';
+import {environment} from '../environments/environment';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import {
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    CalendarModule.forRoot()
+    CalendarModule.forRoot(),
+    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

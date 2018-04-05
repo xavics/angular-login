@@ -23,6 +23,7 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@angular/service-worker": "^5.2.9",
     "angular-calendar": "^0.15.4",
     "core-js": "^2.5.1",
     "rxjs": "^5.5.6",
