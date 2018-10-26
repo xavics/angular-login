@@ -1,7 +1,5 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {fakeBackendProvider} from "./helper/fake-backend";
-import {MockBackend} from "@angular/http/testing";
-import {BaseRequestOptions} from "@angular/http";
 import {StorageService} from "./services/storage.service";
 import {AuthorizatedGuard} from "./guards/authorizated.guard";
 
@@ -11,9 +9,7 @@ import {AuthorizatedGuard} from "./guards/authorizated.guard";
   providers: [
     StorageService,
     AuthorizatedGuard,
-    fakeBackendProvider,
-    MockBackend,
-    BaseRequestOptions
+    fakeBackendProvider
   ],
   bootstrap: []
 })

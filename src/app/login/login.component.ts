@@ -1,7 +1,7 @@
 /**
  * Created by xavi on 5/16/17.
  */
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Validators, FormGroup, FormBuilder} from "@angular/forms";
 import {LoginObject} from "./shared/login-object.model";
 import {AuthenticationService} from "./shared/authentication.service";
@@ -13,7 +13,7 @@ import {Session} from "../core/models/session.model";
   templateUrl: 'login.component.html'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public submitted: Boolean = false;
   public error: {code: number, message: string} = null;
@@ -36,7 +36,9 @@ export class LoginComponent {
     if(this.loginForm.valid){
       this.authenticationService.login(new LoginObject(this.loginForm.value)).subscribe(
         data => this.correctLogin(data),
-        error => this.error = JSON.parse(error._body)
+        error => {
+          this.error = error;
+        }
       )
     }
   }
