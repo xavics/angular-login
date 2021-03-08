@@ -10,4 +10,4 @@ const appRoutes: Routes = [
   { path: '**', redirectTo: '/home'}
 ];
 
-export const Routing = RouterModule.forRoot(appRoutes);
+export const Routing = RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' });
