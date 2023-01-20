@@ -3,11 +3,10 @@
  */
 import {Component, OnInit} from "@angular/core";
 import {Validators, FormGroup, FormBuilder} from "@angular/forms";
-import {LoginObject} from "./shared/login-object.model";
-import {AuthenticationService} from "./shared/authentication.service";
-import {StorageService} from "../core/services/storage.service";
 import {Router} from "@angular/router";
+import { LoginObject } from "../core/models/login-object.model";
 import {Session} from "../core/models/session.model";
+import { AuthService } from "../core/services/auth.service";
 @Component({
   selector: 'login',
   templateUrl: 'login.component.html'
@@ -15,13 +14,20 @@ import {Session} from "../core/models/session.model";
 
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
-  public submitted: Boolean = false;
-  public error: {code: number, message: string} = null;
+  public submitted: boolean = false;
+  public error: {code: number, message: string} | null = null;
 
   constructor(private formBuilder: FormBuilder,
-              private authenticationService: AuthenticationService,
-              private storageService: StorageService,
+              private authService: AuthService,
               private router: Router) { }
+
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get password() {
+    return this.loginForm.get('username');
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -34,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.error = null;
     if(this.loginForm.valid){
-      this.authenticationService.login(new LoginObject(this.loginForm.value)).subscribe(
+      this.authService.login(new LoginObject(this.loginForm.value)).subscribe(
         data => this.correctLogin(data),
         error => {
           this.error = error;
@@ -44,7 +50,6 @@ export class LoginComponent implements OnInit {
   }
 
   private correctLogin(data: Session){
-    this.storageService.setCurrentSession(data);
     this.router.navigate(['/home']);
   }
 }

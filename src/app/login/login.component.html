@@ -7,13 +7,13 @@
       <form id="login-form" #lForm="ngForm" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
         <mat-form-field style="width: 100%; margin-bottom: 10px;" [ngClass]="{'mat-input-invalid': submitted && error?.code == 1}">
           <input matInput type="text" formControlName="username" placeholder="Username"/>
-          <mat-hint style="color: red;" *ngIf="submitted && error?.code == 1 && !loginForm.controls.username.hasError('required')">{{error.message}}</mat-hint>
-          <mat-hint style="color: red;" *ngIf="submitted && loginForm.controls.username.hasError('required')">Field is mandatory</mat-hint>
+          <mat-hint style="color: red;" *ngIf="submitted && error?.code == 1 && !username?.hasError('required')">{{error.message}}</mat-hint>
+          <mat-hint style="color: red;" *ngIf="submitted && username?.hasError('required')">Field is mandatory</mat-hint>
         </mat-form-field>
         <mat-form-field style="width: 100%;" [ngClass]="{'mat-input-invalid': submitted && error?.code == 2}">
           <input matInput type="password" formControlName="password" placeholder="Password"/>
-          <mat-hint style="color: red;" *ngIf="submitted && error?.code == 2 && !loginForm.controls.password.hasError('required')">{{error.message}}</mat-hint>
-          <mat-hint style="color: red;" *ngIf="submitted && loginForm.controls.password.hasError('required')">Field is mandatory</mat-hint>
+          <mat-hint style="color: red;" *ngIf="submitted && error?.code == 2 && !password?.hasError('required')">{{error.message}}</mat-hint>
+          <mat-hint style="color: red;" *ngIf="submitted && password?.hasError('required')">Field is mandatory</mat-hint>
         </mat-form-field>
       </form>
     </mat-card-content>

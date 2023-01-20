@@ -1,19 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule} from '@angular/common/http';
-
-import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {CoreModule} from "./core/core.module";
-import {Routing} from "./app.routing";
-import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import {environment} from '../environments/environment';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { Routing } from "./app.routing";
+import { CoreModule } from "./core/core.module";
+import { HomeComponent } from "./home/home.component";
+import { LoginComponent } from "./login/login.component";
 
 @NgModule({
   declarations: [

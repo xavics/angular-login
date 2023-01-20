@@ -1,10 +1,11 @@
 /**
  * Created by xavi on 5/16/17.
  */
-import {Component, OnInit} from "@angular/core";
-import {StorageService} from "../core/services/storage.service";
-import {User} from "../core/models/user.model";
-import {AuthenticationService} from "../login/shared/authentication.service";
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../core/services/auth.service";
+import { User } from "../core/models/user.model";
+import { UserService } from "../core/services/user.service";
+import { Router } from "@angular/router";
 @Component({
   selector: 'home',
   templateUrl: 'home.component.html'
@@ -14,17 +15,18 @@ export class HomeComponent implements OnInit {
   public user: User;
 
   constructor(
-    private storageService: StorageService,
-    private authenticationService: AuthenticationService
+    private authService: AuthService,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.user = this.storageService.getCurrentUser();
+    this.userService.user$.subscribe(user => this.user = user);
   }
 
-  public logout(): void{
-    this.authenticationService.logout().subscribe(
-        response => {if(response) {this.storageService.logout();}}
+  public logout(): void {
+    this.authService.logout().subscribe(
+      () => { this.router.navigate(['login']) }
     );
   }
 

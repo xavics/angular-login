@@ -15,7 +15,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // array in local storage for registered users
-    let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
+    let users: any[] = JSON.parse(localStorage.getItem('users') || '[]') || [];
 
     // wrap in delayed observable to simulate server api call
     return of(null).pipe(mergeMap(() => {
@@ -25,10 +25,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         let params = request.body;
 
         // check user credentials and return fake jwt token if valid
-        let found: User = USERS.find((user: User) => {return (params.username === user.username);});
+        let found: User | undefined = USERS.find((user: User) => {return (params.username === user.username);});
         if (found) {
           if(params.password === found.password) {
-            return of(new HttpResponse({status: 200, body: {token: 'fake-token-jwt', user: found}}));
+            return of(new HttpResponse({status: 200, body: {token: btoa(JSON.stringify({user: found.id, exp:  Math.floor(Date.now() / 1000) + (60 * 60)})), user: found}}));
           }else{
             return throwError({code: 2, message: 'The password does not match '});
           }
@@ -40,6 +40,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
       if (request.url.endsWith('/api/authenticate/logout') && request.method === 'POST') {
         return of(new HttpResponse({status: 200, body: true}));
+      }
+
+      if (request.url.startsWith('/api/user/') && request.method === 'GET') {
+        const splittedUrl = request.url.split('/');
+        const id = splittedUrl[splittedUrl.length - 1];
+        let found: User | undefined = USERS.find((user: User) => {return (+id === user.id);});
+        if (found) {
+          return of(new HttpResponse({status: 200, body: found}));
+        }
+        return throwError({code: 1, message: 'User does not exists'});
       }
 
       // pass through any requests not handled above
